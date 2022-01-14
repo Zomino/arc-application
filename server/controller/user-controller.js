@@ -3,7 +3,7 @@ const userModel = require('../models/user-model');
 
 
 const postUsers = async (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   try {
     const user = req.body;
     const clash = await userModel.findOne({email:user.email})
@@ -24,8 +24,9 @@ const postUsers = async (req, res) => {
 
 
 const getUsers = async (req, res) => {
-  const identifier = req.query.identifier;
-  console.log(identifier)
+  // console.log(req.body)
+  const identifier = req.body.email;
+  // console.log(identifier)
   const user = await userModel.findOne({email:identifier})
   console.log(user)
   res.send(user)
