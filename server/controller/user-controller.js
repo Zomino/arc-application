@@ -23,7 +23,7 @@ const postUsers = async (req, res) => {
 }
 
 
-const getUsers = async (req, res) => {
+const getUser = async (req, res) => {
   // console.log(req.body)
   const identifier = req.body.email;
   // console.log(identifier)
@@ -32,6 +32,12 @@ const getUsers = async (req, res) => {
   res.send(user)
 }
 
+const getUsers = async (req, res) => {
+  const users = await userModel.find();
+
+  res.status(200).json(users)
+}
 
 
-module.exports = { postUsers, getUsers };
+
+module.exports = { postUsers, getUser, getUsers};
