@@ -20,7 +20,7 @@ const postEvents = async (req, res) => {
 
 
 const getEventsList = async (req, res) => {
-  console.log(req.body.user)
+  // console.log(req.body.user)
   try {
     const user = req.body.user;
     const eventList = await eventModel.find({});
@@ -60,9 +60,6 @@ const updatePayment = async (req, res) => {
     const arcsPaid = updatedEvent.arcsPaid;
     arcsPaid[user] = true;
     await eventModel.findByIdAndUpdate(event, {arcsPaid})
-    console.log(updatedEvent)
-    // const savedDoc = await eventModel.findOneAndReplace({_id:event}, { $set: updatedEvent })
-
   }
 
   catch (error) {
