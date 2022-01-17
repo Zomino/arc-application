@@ -41,8 +41,28 @@ const getEvent = async (req, res) => {
   try {
     const id = req.body.event
     const currentEvent = await eventModel.find({_id: id});
-    console.log(currentEvent)
     res.status(200).json(currentEvent)
+  }
+
+  catch (error) {
+    console.log(error);
+    res.sendStatus(500)
+  }
+}
+
+const updatePayment = async (req, res) => {
+
+  try {
+    const {event, user} = req.params;
+    console.log(event)
+    console.log(user)
+    const updatedEvent = await eventModel.findById(event)
+    const arcsPaid = updatedEvent.arcsPaid;
+    arcsPaid[user] = true;
+    await eventModel.findByIdAndUpdate(event, {arcsPaid})
+    console.log(updatedEvent)
+    // const savedDoc = await eventModel.findOneAndReplace({_id:event}, { $set: updatedEvent })
+
   }
 
   catch (error) {
@@ -54,4 +74,4 @@ const getEvent = async (req, res) => {
 
 
 
-module.exports = { postEvents, getEventsList, getEvent}
+module.exports = { postEvents, getEventsList, getEvent, updatePayment}
