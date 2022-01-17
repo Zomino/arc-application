@@ -1,8 +1,8 @@
-const userModel = require('../models/user-model');
+const eventModel = require('../models/event-model');
 
 
 
-const postUsers = async (req, res) => {
+const postEvents = async (req, res) => {
   console.log(req.body)
   try {
     const user = req.body;
@@ -23,19 +23,6 @@ const postUsers = async (req, res) => {
 }
 
 
-const getUser = async (req, res) => {
-  const identifier = req.body.email;
-  const user = await userModel.findOne({email:identifier})
-  console.log(user)
-  res.send(user)
-}
-
-const getUsers = async (req, res) => {
-  const users = await userModel.find();
-
-  res.status(200).json(users)
-}
 
 
-
-module.exports = { postUsers, getUser, getUsers};
+module.exports = { postEvents };
