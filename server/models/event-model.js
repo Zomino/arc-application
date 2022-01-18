@@ -13,6 +13,8 @@ const eventSchema = new Schema({
       arcs: {type : {}, required: true},
       arcsPaid: {type : {}, required: true},
       arcItems: {type : {}, required: true},
+      arcFirstNames: {type : {}, required: true},
+      arcNameArray: {type : [], required: true},
 })
 
 

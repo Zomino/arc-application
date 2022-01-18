@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://127.0.0.1:27017/NewArcDatabase')
+mongoose.connect('mongodb://127.0.0.1:27017/NewArcDatabasev2')
 
 const db = mongoose.connection;
 
