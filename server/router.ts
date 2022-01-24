@@ -1,6 +1,8 @@
-const router = require('express').Router();
-const userController = require('./controller/user-controller');
-const eventController = require('./controller/event-controller');
+import { Router } from 'express';
+import userController from './controller/user-controller';
+import eventController from './controller/event-controller';
+
+const router = Router();
 
 router.post('/usercreate', userController.postUsers);
 router.post('/user', userController.getUser);
@@ -10,4 +12,4 @@ router.post('/eventsList', eventController.getEventsList);
 router.post('/currentEvent', eventController.getEvent);
 router.put('/events/:event/:user', eventController.updatePayment);
 
-module.exports = router;
+export default router;

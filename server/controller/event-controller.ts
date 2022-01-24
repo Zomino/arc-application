@@ -1,6 +1,7 @@
-const eventModel = require('../models/event-model');
+import { Request, Response } from 'express';
+import eventModel from '../models/event-model';
 
-const postEvents = async (req, res) => {
+const postEvents = async (req: Request, res: Response) => {
   console.log(req.body);
   try {
     const event = req.body;
@@ -13,7 +14,7 @@ const postEvents = async (req, res) => {
   }
 };
 
-const getEventsList = async (req, res) => {
+const getEventsList = async (req: Request, res: Response) => {
   // console.log(req.body.user)
   try {
     const { user } = req.body;
@@ -26,7 +27,7 @@ const getEventsList = async (req, res) => {
   }
 };
 
-const getEvent = async (req, res) => {
+const getEvent = async (req: Request, res: Response) => {
   try {
     const id = req.body.event;
     const currentEvent = await eventModel.find({ _id: id });
@@ -37,7 +38,7 @@ const getEvent = async (req, res) => {
   }
 };
 
-const updatePayment = async (req, res) => {
+const updatePayment = async (req: Request, res: Response) => {
   try {
     const { event, user } = req.params;
     console.log(event);
@@ -51,7 +52,6 @@ const updatePayment = async (req, res) => {
     res.sendStatus(500);
   }
 };
-
-module.exports = {
+export default {
   postEvents, getEventsList, getEvent, updatePayment,
 };

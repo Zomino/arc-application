@@ -1,6 +1,4 @@
-const mongoose = require('mongoose');
-
-const { Schema } = mongoose;
+import mongoose, { Schema } from 'mongoose';
 
 const eventSchema = new Schema({
   eventName: { type: String, required: true },
@@ -17,4 +15,4 @@ const eventSchema = new Schema({
   arcNameArray: { type: [], required: true },
 });
 
-module.exports = mongoose.model('eventModel', eventSchema);
+export default mongoose.model('eventModel', eventSchema);

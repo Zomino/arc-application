@@ -1,6 +1,7 @@
-const userModel = require('../models/user-model');
+import { Request, Response } from 'express';
+import userModel from '../models/user-model';
 
-const postUsers = async (req, res) => {
+const postUsers = async (req: Request, res: Response) => {
   console.log(req.body);
   try {
     const user = req.body;
@@ -18,17 +19,17 @@ const postUsers = async (req, res) => {
   }
 };
 
-const getUser = async (req, res) => {
+const getUser = async (req: Request, res: Response) => {
   const identifier = req.body.email;
   const user = await userModel.findOne({ email: identifier });
   console.log(user);
   res.send(user);
 };
 
-const getUsers = async (req, res) => {
+const getUsers = async (req: Request, res: Response) => {
   const users = await userModel.find();
 
   res.status(200).json(users);
 };
 
-module.exports = { postUsers, getUser, getUsers };
+export default { postUsers, getUser, getUsers };

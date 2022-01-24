@@ -1,16 +1,14 @@
-const express = require('express');
+import express from 'express';
+import cors from 'cors';
+import router from './router';
+import db from './db';
 
 const app = express();
 const port = 3000;
-const cors = require('cors');
-const db = require('./db');
-const router = require('./router');
 
 app.use(cors());
 app.use(express.json());
 app.use(router);
-
-// eslint-disable-next-line no-unexpected-multiline
 
 app.listen(port, () => {
   db;
