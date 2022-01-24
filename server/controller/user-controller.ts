@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import userModel from '../models/user-model';
 
 const postUsers = async (req: Request, res: Response) => {
-  console.log(req.body);
   try {
     const user = req.body;
     const clash = await userModel.findOne({ email: user.email });
@@ -22,13 +21,11 @@ const postUsers = async (req: Request, res: Response) => {
 const getUser = async (req: Request, res: Response) => {
   const identifier = req.body.email;
   const user = await userModel.findOne({ email: identifier });
-  console.log(user);
   res.send(user);
 };
 
 const getUsers = async (req: Request, res: Response) => {
   const users = await userModel.find();
-
   res.status(200).json(users);
 };
 
