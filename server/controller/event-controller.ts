@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import eventModel from '../models/event-model';
 
-const postEvents = async (req: Request, res: Response) => {
+const postEvent = async (req: Request, res: Response) => {
   try {
     const event = req.body;
     const savedEvent = await eventModel.create(event);
@@ -49,7 +49,7 @@ const updatePayment = async (req: Request, res: Response) => {
 };
 
 export default {
-  postEvents,
+  postEvent,
   getEventsList,
   getEvent,
   updatePayment,
