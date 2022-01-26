@@ -1,72 +1,70 @@
-import { User } from './types/userType'
+import { User } from './types/userType';
 
-const base_url = 'http://127.0.0.1:3000'
+const BASE_URL = 'http://127.0.0.1:3000';
 
-function fetchFactory(path: string, options: any) {
-  return fetch(base_url + path, options)
-    .then(res => res.status < 400 ? res : Promise.reject())
-    .then(res => res.json())
-    .catch(err => console.log(err));
+interface CustomOptions {
+  method: string,
+  body?: string,
+}
+
+function fetchFactory(path: string, customOptions?: CustomOptions) {
+  const defaultOptions = {
+    headers: { 'Content-Type': 'application/json' },
+  };
+
+  const options = {
+    ...defaultOptions,
+    ...customOptions,
+  };
+
+  return fetch(BASE_URL + path, options)
+    .then((res) => (res.status < 400 ? res : Promise.reject()))
+    .then((res) => res.json());
 }
 
 function createUser(user: User) {
   return fetchFactory('/usercreate', {
     method: 'POST',
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(user)
-  })
+    body: JSON.stringify(user),
+  });
 }
 
 function getUser(email: string) {
-  const objEmail = {email: email}
   return fetchFactory('/user', {
     method: 'POST',
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({email:email})
-  })
+    body: JSON.stringify({ email }),
+  });
 }
 
 function getUsers() {
-  return fetchFactory('/userlist',{})
+  return fetchFactory('/userlist');
 }
-
 
 function createEvent(event: any) {
   return fetchFactory('/eventcreate', {
     method: 'POST',
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(event)
-  })
+    body: JSON.stringify(event),
+  });
 }
 
 function getEventsList(user: any) {
   return fetchFactory('/eventsList', {
     method: 'POST',
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(user)
-  })
+    body: JSON.stringify(user),
+  });
 }
 
 function getEvent(event:any) {
   return fetchFactory('/currentEvent', {
     method: 'POST',
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(event)
-  })
+    body: JSON.stringify(event),
+  });
 }
 
 function updatePayment(event:any, user:any) {
-  return fetchFactory(`/events/${event}/${user}`, { method: "PUT" });
+  return fetchFactory(`/events/${event}/${user}`, {
+    method: 'PUT',
+  });
 }
 
 const ApiService = {
