@@ -1,3 +1,0 @@
-[submodule "client/client/arc-app"]
-	path = client/client/arc-app
-	url = https://github.com/angusedwards64/arc-app.git
