@@ -1,18 +1,12 @@
-const base_url = 'http://127.0.0.1:3000'
 import { User } from './types/userType'
-import axios from '../node_modules/axios';
 
+const base_url = 'http://127.0.0.1:3000'
 
 function fetchFactory(path: string, options: any) {
-
-
   return fetch(base_url + path, options)
     .then(res => res.status < 400 ? res : Promise.reject())
     .then(res => res.json())
-    .catch(err => console.log(err))
-
-
-
+    .catch(err => console.log(err));
 }
 
 function createUser(user: User) {
@@ -25,10 +19,8 @@ function createUser(user: User) {
   })
 }
 
-
 function getUser(email: string) {
-const objEmail = {email: email}
-  console.log(objEmail)
+  const objEmail = {email: email}
   return fetchFactory('/user', {
     method: 'POST',
     headers: {
@@ -39,7 +31,7 @@ const objEmail = {email: email}
 }
 
 function getUsers() {
-return fetchFactory('/userlist',{})
+  return fetchFactory('/userlist',{})
 }
 
 
@@ -54,7 +46,6 @@ function createEvent(event: any) {
 }
 
 function getEventsList(user: any) {
-  // console.log('hitting Api', user)
   return fetchFactory('/eventsList', {
     method: 'POST',
     headers: {
@@ -75,13 +66,17 @@ function getEvent(event:any) {
 }
 
 function updatePayment(event:any, user:any) {
-  // console.log('eventhitting api', event)
-  return fetchFactory(`/events/${event}/${user}`, {method: "PUT"})
+  return fetchFactory(`/events/${event}/${user}`, { method: "PUT" });
 }
 
+const ApiService = {
+  createUser,
+  getUser,
+  getUsers,
+  createEvent,
+  getEventsList,
+  getEvent,
+  updatePayment,
+};
 
-
-
-const ApiService = {createUser, getUser, getUsers, createEvent, getEventsList, getEvent, updatePayment}
-
-export default ApiService
+export default ApiService;
