@@ -3,9 +3,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import supertest from 'supertest';
-import router from '../router';
+import router from '../../router';
 import 'regenerator-runtime/runtime';
-import User from '../models/user-model';
+import User from '../../models/user-model';
 
 const dbName = 'arcTest';
 

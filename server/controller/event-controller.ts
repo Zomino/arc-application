@@ -5,7 +5,7 @@ const postEvent = async (req: Request, res: Response) => {
   try {
     const event = req.body;
     const savedEvent = await eventModel.create(event);
-    res.status(200).json(savedEvent);
+    res.status(201).json(savedEvent);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
